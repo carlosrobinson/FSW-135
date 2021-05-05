@@ -1,73 +1,73 @@
 const express = require("express")
 const authRouter = express.Router()
-const Author = require('../models/author.js')
+const Authentication  = require('../models/Authentication.js')
 
 
-// Get All Authors
+// Get All Authentications
 authRouter.get("/", (req, res, next) => {
-    Author.find((err, author) => {
+  Authentication.find((err, authentication ) => {
       if(err){
         res.status(500)
         return next(err)
       }
-      return res.status(200).send(author)
+      return res.status(200).send(authentication )
     })
   })
 
 
-  // Get One Author
-authRouter.get("/:authorId", (req, res, next) => {
-    Author.find(
-        {_id: req.params.authorId},
-       (err, foundAuthor) => {
+  // Get One Authentication
+authRouter.get("/:authenticationId", (req, res, next) => {
+  Authentication.find(
+        {_id: req.params.authenticationId},
+       (err, foundAuthentication ) => {
                if(err) {
                    res.status(500)
                    return next(err)
                }
-               return res.status(201).send(foundAuthor)
+               return res.status(201).send(foundAuthentication)
            }
         )
      })
 
-  // Add new Author
+  // Add new Authentication
 authRouter.post("/", (req, res, next) => {
-    const newAuthor = new Author(req.body)
-    newAuthor.save((err, savedAuthor) => {
+    const newAuthentication  = new Authentication(req.body)
+    newAuthentication.save((err, savedAuthentication ) => {
       if(err){
         res.status(500)
         return next(err)
       }
-      return res.status(201).send(savedAuthor)
+      return res.status(201).send(savedAuthentication )
     })
   })
 
-  // Delete Author
-authRouter.delete("/:authorId", (req, res, next) => {
-    Author.findOneAndDelete(
-      { _id: req.params.authorId },
-      (err, deletedAuthor) => {
+  // Delete Authentication
+authRouter.delete("/:authenticationId", (req, res, next) => {
+  Authentication.findOneAndDelete(
+      { _id: req.params.AuthenticationId },
+      (err, deletedAuthentication) => {
         if(err){
           res.status(500) 
           return next(err)
         }
-        return res.status(200).send(`Successfully delete author: ${deletedAuthor.name}`)
+        return res.status(200).send(`Successfully delete authentication.`)
       }
     )
   })
 
 
-  // Update Author
-authRouter.put("/:authorId", (req, res, next) => {
-    Author.findOneAndUpdate(
-      { _id: req.params.authorId },
+  // Update Authentication
+authRouter.put("/:authenticationId", (req, res, next) => {
+  Authentication.findOneAndUpdate(
+      { _id: req.params.authenticationId },
       req.body,
       { new: true },
-      (err, updatedAuthor) => {
+      (err, updatedAuthentication) => {
         if(err){
           res.status(500)
           return next(err)
         }
-        return res.status(201).send(updatedAuthor)
+        return res.status(201).send(updatedAuthentication)
       }
     )
   })

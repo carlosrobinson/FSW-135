@@ -17,7 +17,7 @@ mongoose.connect(
     () => console.log('Connected to the DB')
   )
 
-  app.use('/author', require("./routes/authRouter.js"))
+  app.use('/authentication', require("./routes/authRouter.js"))
   app.use('/user', require("./routes/userRouter.js"))
   app.use('/issue', require("./routes/issueRouter.js"))
   app.use('/comment', require("./routes/commentRouter.js"))
