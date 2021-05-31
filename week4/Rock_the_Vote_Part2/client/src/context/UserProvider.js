@@ -4,7 +4,7 @@ export const UserContext = React.createContext()
 
 export default function UserProvider(props) {
     const initState = { user: {}, token: "" }
-    const [userState, setUserState] = useState(initState)
+    const [userState] = useState(initState)
 
     function signup(credentials) {
         axios.post('/auth/signup', credentials)
